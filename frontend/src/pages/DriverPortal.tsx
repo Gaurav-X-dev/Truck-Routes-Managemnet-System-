@@ -184,8 +184,8 @@ export default function DriverPortal() {
   };
 
   return (
-    <div style={{ height: '100vh', background: '#000', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-      <div className="glass-panel" style={{ background: '#0a0a0a', border: '1px solid #222', padding: '2rem', textAlign: 'center', maxWidth: '400px', width: '100%' }}>
+    <div className="driver-portal-wrapper" style={{ height: '100vh', background: '#000', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+      <div className="glass-panel driver-portal-panel" style={{ background: '#0a0a0a', border: '1px solid #222', padding: '2rem', textAlign: 'center', maxWidth: '400px', width: '100%' }}>
         <div style={{ width: 64, height: 64, background: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', color: '#000' }}>
           <Truck size={32} />
         </div>
@@ -252,7 +252,7 @@ export default function DriverPortal() {
             </div>
             
             {currentPosition && (
-              <div style={{ height: '250px', borderRadius: '8px', overflow: 'hidden', marginBottom: '1rem' }}>
+              <div className="driver-portal-map" style={{ borderRadius: '8px', overflow: 'hidden', marginBottom: '1rem' }}>
                 <MapContainer center={currentPosition} zoom={14} style={{ height: '100%', width: '100%' }}>
                   <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution='&copy; OpenStreetMap' />
                   <MapUpdater center={currentPosition} />
