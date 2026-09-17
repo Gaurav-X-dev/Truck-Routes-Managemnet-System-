@@ -208,7 +208,7 @@ export default function Shops() {
             <span style={{ color: '#10b981', fontWeight: 600 }}>{shops.length}</span> total shops — showing <strong>{filteredShops.length}</strong> results
           </p>
         </div>
-        <div className="header-actions">
+        <div className="flex gap-3 items-center header-actions">
           <input type="file" ref={fileInputRef} onChange={handleFileUpload} style={{ display: 'none' }} accept=".xlsx,.xls" />
           <button className="btn-secondary" onClick={() => fileInputRef.current?.click()} disabled={isUploading}>
             <Upload size={16} /> {isUploading ? 'Uploading...' : 'Import'}

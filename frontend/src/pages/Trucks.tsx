@@ -264,7 +264,7 @@ export default function Trucks() {
           <h2 className="flex items-center gap-2">Logistics Fleet <span style={{ background: '#222', fontSize: '10px', padding: '2px 6px', borderRadius: '4px', display: 'flex', alignItems: 'center', gap: '4px' }}><Server size={10} className="text-success"/> Connected</span></h2>
           <p className="text-muted text-sm mt-1">Manage trucks, history, and optimize delivery routes.</p>
         </div>
-        <div className="header-actions">
+        <div className="flex gap-4 items-center header-actions">
           <div style={{ display: 'flex', background: '#111', padding: '0.25rem', borderRadius: '8px', border: '1px solid var(--border-color)', flex: 1, minWidth: '200px' }}>
             <button onClick={() => setActiveTab('active')} style={{ flex: 1, background: activeTab === 'active' ? '#222' : 'transparent', color: activeTab === 'active' ? '#fff' : 'var(--text-secondary)', border: 'none', padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer', fontSize: '0.875rem', fontWeight: 500, transition: 'all 0.2s ease' }}>Active Fleet</button>
             <button onClick={() => setActiveTab('archived')} style={{ flex: 1, background: activeTab === 'archived' ? '#222' : 'transparent', color: activeTab === 'archived' ? '#fff' : 'var(--text-secondary)', border: 'none', padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer', fontSize: '0.875rem', fontWeight: 500, transition: 'all 0.2s ease' }}>Archived</button>
