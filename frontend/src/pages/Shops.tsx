@@ -208,15 +208,15 @@ export default function Shops() {
             <span style={{ color: '#10b981', fontWeight: 600 }}>{shops.length}</span> total shops — showing <strong>{filteredShops.length}</strong> results
           </p>
         </div>
-        <div className="flex gap-3 items-center">
+        <div className="header-actions">
           <input type="file" ref={fileInputRef} onChange={handleFileUpload} style={{ display: 'none' }} accept=".xlsx,.xls" />
           <button className="btn-secondary" onClick={() => fileInputRef.current?.click()} disabled={isUploading}>
-            <Upload size={16} /> {isUploading ? 'Uploading...' : 'Import Excel'}
+            <Upload size={16} /> {isUploading ? 'Uploading...' : 'Import'}
           </button>
-          <a href={`/api/v1/shops/export`} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
-            <button className="btn-secondary"><Download size={16} /> Export CSV</button>
+          <a href={`/api/v1/shops/export`} target="_blank" rel="noreferrer" style={{ textDecoration: 'none', display: 'flex' }}>
+            <button className="btn-secondary" style={{ width: '100%' }}><Download size={16} /> Export</button>
           </a>
-          <button className="btn-primary" onClick={() => setShowAddModal(true)}>
+          <button className="btn-primary full-width-mobile" onClick={() => setShowAddModal(true)}>
             <Plus size={16} /> Add Shop
           </button>
         </div>
