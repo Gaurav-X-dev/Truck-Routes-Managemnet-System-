@@ -413,6 +413,7 @@ tr:hover td {
     max-height: 400px !important;
   }
   .map-tracking-map {
+    flex: none !important;
     height: 450px !important;
   }
   
