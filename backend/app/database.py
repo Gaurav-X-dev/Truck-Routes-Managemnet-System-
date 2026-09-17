@@ -2,7 +2,8 @@ from collections.abc import Generator
 from typing import Any
 
 from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 from app.config import settings
 
