@@ -1,11 +1,12 @@
 from datetime import datetime
+from typing import Optional
 
 from pydantic import BaseModel, EmailStr
 
 
 class UserBase(BaseModel):
     email: EmailStr
-    full_name: str | None = None
+    full_name: Optional[str] = None
     is_active: bool = True
     role_id: int
 
@@ -15,7 +16,7 @@ class UserCreate(UserBase):
 class UserResponse(UserBase):
     id: int
     created_at: datetime
-    updated_at: datetime | None = None
+    updated_at: Optional[datetime] = None
 
     class Config:
         from_attributes = True

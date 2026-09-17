@@ -1,21 +1,23 @@
 from datetime import datetime
+from typing import Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel
 
 
 class LocationUpdate(BaseModel):
     truck_id: int
-    route_id: int | None = None
+    route_id: Optional[int] = None
     latitude: float
     longitude: float
-    timestamp: datetime | None = None
+    timestamp: Optional[datetime] = None
 
 class TruckLocationResponse(BaseModel):
     id: int
     truck_id: int
-    route_id: int | None
+    route_id: Optional[int]
     latitude: float
     longitude: float
     recorded_at: datetime
-    
-    model_config = ConfigDict(from_attributes=True)
+
+    class Config:
+        from_attributes = True
