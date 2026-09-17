@@ -233,7 +233,7 @@ export default function MapTracking() {
   const clearAll = () => { setNotifications([]); localStorage.removeItem('routemaster_notifications'); };
 
   return (
-    <div style={{ height: 'calc(100vh - 8rem)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div className="map-tracking-root" style={{ height: 'calc(100vh - 8rem)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
 
       {/* Toast */}
       {toastNotification && (
@@ -314,9 +314,9 @@ export default function MapTracking() {
       </div>
 
       {/* Map + Sidebar Layout */}
-      <div style={{ flex: 1, display: 'flex', gap: '1rem', minHeight: 0 }}>
+      <div className="map-tracking-layout" style={{ flex: 1, display: 'flex', gap: '1rem', minHeight: 0 }}>
         {/* Map */}
-        <div style={{ flex: 1, borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border-color)', position: 'relative' }}>
+        <div className="map-tracking-map" style={{ flex: 1, borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border-color)', position: 'relative' }}>
           <MapContainer center={center} zoom={12} style={{ height: '100%', width: '100%' }}>
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -388,7 +388,7 @@ export default function MapTracking() {
 
         {/* Fleet Sidebar */}
         {showSidebar && (
-          <div style={{ width: '260px', display: 'flex', flexDirection: 'column', gap: '0.75rem', overflowY: 'auto' }}>
+          <div className="map-tracking-sidebar" style={{ width: '260px', display: 'flex', flexDirection: 'column', gap: '0.75rem', overflowY: 'auto' }}>
             <div style={{ fontSize: '0.8rem', color: '#666', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Active Fleet</div>
 
             {Object.keys(activeTrucks).length === 0 ? (

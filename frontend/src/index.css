@@ -307,6 +307,10 @@ tr:hover td {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
+.driver-portal-map {
+  height: 250px;
+}
+
 /* Utilities */
 .text-success { color: var(--success); }
 .text-warning { color: var(--warning); }
@@ -394,5 +398,32 @@ tr:hover td {
   /* Route Planner Stack */
   .planner-grid {
     grid-template-columns: 1fr !important;
+  }
+  
+  /* Map Tracking Center Responsive */
+  .map-tracking-root {
+    height: auto !important;
+    min-height: calc(100vh - 8rem);
+  }
+  .map-tracking-layout {
+    flex-direction: column !important;
+  }
+  .map-tracking-sidebar {
+    width: 100% !important;
+    max-height: 400px !important;
+  }
+  .map-tracking-map {
+    min-height: 450px !important;
+  }
+  
+  /* Driver Portal Responsive */
+  .driver-portal-wrapper {
+    padding: 1rem !important;
+  }
+  .driver-portal-panel {
+    padding: 1rem !important;
+  }
+  .driver-portal-map {
+    height: 350px !important; /* aache se dikhai de */
   }
 }
