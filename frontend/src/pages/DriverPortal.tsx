@@ -78,7 +78,7 @@ export default function DriverPortal() {
   }, [currentPosition, nextStop?.id]);
 
   useEffect(() => {
-    const s = io(SOCKET_URL);
+    const s = io(SOCKET_URL, { transports: ['websocket'] });
     socketRef.current = s;
 
     s.on('connect', () => console.log('[Driver] Socket connected:', s.id));

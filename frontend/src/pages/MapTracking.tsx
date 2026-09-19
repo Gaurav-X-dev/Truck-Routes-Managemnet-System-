@@ -144,7 +144,7 @@ export default function MapTracking() {
 
   // Socket connection
   useEffect(() => {
-    const socket = io(SOCKET_URL, { transports: ['polling', 'websocket'] });
+    const socket = io(SOCKET_URL, { transports: ['websocket'] });
     socket.on('connect', () => { setConnected(true); console.log('[Admin] Socket connected:', socket.id); });
     socket.on('disconnect', () => setConnected(false));
 

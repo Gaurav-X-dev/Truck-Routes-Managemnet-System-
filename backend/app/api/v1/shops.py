@@ -14,7 +14,7 @@ from app.schemas.shop import ShopCreate, ShopUpdate, ShopResponse
 
 router = APIRouter()
 
-@router.get("/", response_model=List[ShopResponse])
+@router.get("", response_model=List[ShopResponse])
 def get_shops(
     db: Session = Depends(get_db),
     skip: int = 0,
@@ -35,7 +35,7 @@ def get_shops(
         
     return query.offset(skip).limit(limit).all()
 
-@router.post("/", response_model=ShopResponse)
+@router.post("", response_model=ShopResponse)
 def create_shop(shop: ShopCreate, db: Session = Depends(get_db)):
     db_shop = Shop(**shop.model_dump())
     db.add(db_shop)
