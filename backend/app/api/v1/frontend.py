@@ -166,10 +166,16 @@ def complete_trip(truck_id: str, db: Session = Depends(get_db)):
     from sqlalchemy.sql import func
     truck = db.query(Truck).filter(Truck.truck_number == truck_id).first()
     if truck:
-        db.query(Route).filter(Route.truck_id == truck.id, Route.status.in_(["PENDING", "ACTIVE"])).update({
-            "status": "COMPLETED",
-            "completed_at": func.now()
-        })
+        routes_to_complete = db.query(Route).filter(Route.truck_id == truck.id, Route.status.in_(["PENDING", "ACTIVE"])).all()
+        for r in routes_to_complete:
+            r.status = "COMPLETED"
+            r.completed_at = func.now()
+            # Mark all pending stops as completed
+            db.query(RouteStop).filter(RouteStop.route_id == r.id, RouteStop.status == "PENDING").update({
+                "status": "COMPLETED",
+                "completed_at": func.now()
+            })
+        
         truck.status = "idle"
         truck.assigned_bills = 0
         db.commit()
@@ -242,18 +248,25 @@ def reset_trucks(payload: ResetInput, db: Session = Depends(get_db)):
 def auto_complete_stale_trips(db: Session) -> int:
     """Complete all ACTIVE/PENDING routes whose created_at date is before today.
     Called automatically every hour from the scheduler."""
-    today_ist = datetime.now() + timedelta(hours=5, minutes=30)  # IST offset
-    today_date = today_ist.date()
+    now_utc = datetime.utcnow()
+    today_ist = now_utc + timedelta(hours=5, minutes=30)
+    start_of_today_ist = today_ist.replace(hour=0, minute=0, second=0, microsecond=0)
+    cutoff_utc = start_of_today_ist - timedelta(hours=5, minutes=30)
 
     stale_routes = db.query(Route).filter(
         Route.status.in_(["PENDING", "ACTIVE"]),
-        func.date(Route.created_at + timedelta(hours=5, minutes=30)) < today_date
+        Route.created_at < cutoff_utc
     ).all()
 
     count = 0
     for route in stale_routes:
         route.status = "COMPLETED"
         route.completed_at = datetime.utcnow()
+        # Mark all pending stops as completed
+        db.query(RouteStop).filter(RouteStop.route_id == route.id, RouteStop.status == "PENDING").update({
+            "status": "COMPLETED",
+            "completed_at": datetime.utcnow()
+        })
         # Also update the truck status
         truck = db.query(Truck).filter(Truck.id == route.truck_id).first()
         if truck:

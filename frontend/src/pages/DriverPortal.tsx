@@ -277,14 +277,16 @@ export default function DriverPortal() {
               </div>
             )}
             
-            {pendingStops.length === 0 ? (
+            {truckDetails?.currentStops?.length > 0 && pendingStops.length === 0 ? (
               <div style={{ textAlign: 'center', color: 'var(--success)', padding: '1rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '8px', marginBottom: '1rem' }}>
                 <CheckCircle size={24} style={{ margin: '0 auto 0.5rem' }} />
                 <strong>All Stops Delivered!</strong><br />
                 You can now stop duty.
               </div>
-            ) : (
+            ) : truckDetails?.currentStops?.length > 0 ? (
               <p className="text-muted text-sm mb-4">Driving to: <strong style={{ color: '#fff' }}>{nextStop?.name}</strong></p>
+            ) : (
+              <p className="text-muted text-sm mb-4">No stops assigned. GPS tracking is active.</p>
             )}
             
             <button onClick={stopDuty} className="btn-secondary" style={{ width: '100%', borderColor: 'var(--border-color)' }}>
